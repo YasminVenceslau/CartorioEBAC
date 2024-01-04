@@ -115,23 +115,28 @@ int deletar()
         
     FILE *file;
     file = fopen(cpf, "r"); // abre o arquivo e o le
-    fclose(file);
-    
-   
-    
+     
     if (file == NULL) // cria uma condição se o arquivo não exitir
 	 {
 	  printf("Usuário não encontrado, digite outro CFP\n");
 	  system("pause");	
 	 } 
-	 else 
-	{
-		remove(cpf); // remove o arquico cpf scaneado
+
+	fclose(file);
+    
+    
+	if	(remove(cpf) == 0) // remove o arquico cpf scaneado
+	{ 
+	  
 		printf("Usuario foi %s deletado com sucesso!\n", cpf);
 		system("pause");
-	}
-	
-	
+    }
+	 else
+	 {
+	   printf("Erro ao deletar arquivo\n");	
+	 }
+	 
+    	system("pause");
 }
 
 
@@ -162,25 +167,25 @@ int main()
 	
 	system("cls");
    
-	switch(opcao) 
+	switch(opcao) //cria um laço de repetição
 	{
 		case 1:
 		registro();
-	    break;
+	    break; //finaliza o primeiro ciclo
 	    
 	    case 2:
 		consultar();
-	    break;
+	    break;//finaliza o 2° ciclo
 		
 		case 3:
 		deletar();
-	    break;
-	    
+	    break;//finaliza o 3° ciclo
+	        
 	    case 4:
 	    printf("Obrigado por utilizar o sistema!\n");
 	    return 0;
 	    break;
-	        
+		   
 		default:
 		printf("Essa opção não existe\n"); 
 	    system("pause"); // final da celeção
